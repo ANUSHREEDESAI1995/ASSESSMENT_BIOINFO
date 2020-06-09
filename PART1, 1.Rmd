@@ -26,6 +26,8 @@ rowMeans(originaldata)
 Meansofothercolumn <- rowMeans(originaldata)
 # This column is bind to the main data now
 cbind(originaldata, Meansofothercolumn)
+# Permanent change to data. Adding the new column of means
+originaldata <- cbind(originaldata, Meansofothercolumn)
 # Observe the first six genes to check if new column is added
 head(originaldata)
 ```
