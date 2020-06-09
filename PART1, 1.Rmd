@@ -19,6 +19,8 @@ head(originaldata)
 str(originaldata)
 ```
 
+## ANSWER 2: We are asked to make a new column with the mean of other columns. First of all, I have used the rowMeans command to find the means of all rows. Then in order to make a new column, I made a new variable and named it as Meansofothercolumn and stored the means into it. Then with the cbind command i attached the new column to the original dataset and made it a permanent change. And in the end with the head command I printed the result of the first six genes.
+
 ```{r,chunk2,echo=TRUE}
 # Command rowmeans is used to find the means of other columns
 rowMeans(originaldata)
