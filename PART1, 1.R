@@ -4,7 +4,7 @@ download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master
 # Reading the table and making sure that first column is the row names
 originaldata <- read.table("assessment3.tsv")
 originaldata <- read.table("assessment3.tsv", header= TRUE, stringsAsFactors= FALSE, row.names=1) 
-# Data imported properly and printing first six rows
+# Data imported properly and printing first six rows to  check for structure as well
 head(originaldata)
 str(originaldata)
 
