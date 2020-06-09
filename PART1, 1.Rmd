@@ -5,15 +5,25 @@ output: html_document
 theme: cosmo
 ---
 
+## Answer 1: The first answer makes use of commands download.file to download a file, and then to read a tsv file I have used read.table command. In order to format the data set we have put header= 'TRUE' and to obtain gene accession names as row.names I have used the command row.names=1. In the end to obtain just the first six rows head command is used. Structure command is used to observe the structure of the data set. 
+
 ```{r,chunk1,echo=TRUE}
 # Downloaded the data of gene expression file
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/gene_expression.tsv",
               destfile = "assessment3.tsv")
-# Reading the table and making sure that first column is the row names
+# Reading the table and making sure that gene accession names are the row names
 originaldata <- read.table("assessment3.tsv")
 originaldata <- read.table("assessment3.tsv", header= TRUE, stringsAsFactors= FALSE, row.names=1) 
-# Data imported properly and printing first six rows to  check for structure as well
+# Data imported properly and printing first six rows and structure as well.
 head(originaldata)
 str(originaldata)
 ```
 
+```{r,chunk2,echo=TRUE}
+# Command rowmeans is used to find the means of other columns
+rowMeans(originaldata)
+# A new column is made with the name of Meansofothercolumn to store these means
+Meansofothercolumn <- rowMeans(originaldata)
+# This column is bind to the main data now
+cbind(originaldata, Meansofothercolumn)
+```
