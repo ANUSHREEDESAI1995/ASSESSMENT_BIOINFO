@@ -1,0 +1,10 @@
+# Downloaded the data of gene expression file
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/gene_expression.tsv",
+              destfile = "assessment3.tsv")
+# Reading the table and making sure that first column is the row names
+originaldata <- read.table("assessment3.tsv")
+originaldata <- read.table("assessment3.tsv", header= TRUE, stringsAsFactors= FALSE, row.names=1) 
+# Data imported properly and printing first six rows
+head(originaldata)
+str(originaldata)
+
