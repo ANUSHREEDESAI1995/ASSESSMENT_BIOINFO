@@ -33,4 +33,6 @@ originaldata <- originaldata[order( - originaldata$Meansofothercolumn ) , ]
 row.names(originaldata[1:10,])
 
 #ANSWER 4
+# Using the subset command to only extract the genes with means less than 10
+# And simultaneously added nrow to count how many genes have means less than 10
 nrow(subset(originaldata, Meansofothercolumn < 10))
