@@ -21,5 +21,7 @@ head(originaldata)
 order( originaldata $ Meansofothercolumn)
 # The order of column Meansofothercolumn is arranged in descending order with the highest values first
 originaldata[order( - originaldata$Meansofothercolumn ) , ]
+# Permanent change of the descending order to Meansofothercolumn column has been made after this step
 originaldata <- originaldata[order( - originaldata$Meansofothercolumn ) , ]
+# Extracting just the first ten rows with highest means
 row.names(originaldata[1:10,])
