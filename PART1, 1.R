@@ -44,4 +44,5 @@ hist(originaldata$Meansofothercolumn)
 # But because the genes with mean say less than 100 are maxiumum the entire hishtogram was just plotted round that values.
 # Hence by limiting the genes with means in x axis from 20,000 to 25,000 
 # and frequency till 60 we could get a good histogram
-hist(originaldata$Meansofothercolumn, xlim= c(20000,250000), ylim= c(0,60))
+hist(originaldata$Meansofothercolumn, xlim= c(20000,250000), ylim= c(0,60), xlab="Mean of the genes", 
+     main = "MEAN V/S FREQUENCY")
