@@ -33,5 +33,4 @@ originaldata <- originaldata[order( - originaldata$Meansofothercolumn ) , ]
 row.names(originaldata[1:10,])
 
 #ANSWER 4
-subset( originaldata, Meansofothercolumn < 10)
-nrow
+nrow(subset(originaldata, Meansofothercolumn < 10))
