@@ -36,3 +36,8 @@ row.names(originaldata[1:10,])
 # Using the subset command to only extract the genes with means less than 10
 # And simultaneously added nrow to count how many genes have means less than 10
 nrow(subset(originaldata, Meansofothercolumn < 10))
+
+#ANSWER 5
+# In order to plot a histogram command hist is used. 
+# i tried plotting it just normally first
+hist(originaldata$Meansofothercolumn)
