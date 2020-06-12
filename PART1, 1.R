@@ -17,4 +17,9 @@ cbind(originaldata, Meansofothercolumn)
 originaldata <- cbind(originaldata, Meansofothercolumn)
 # Observe the first six genes to check if new column is added
 head(originaldata)
-
+# The order commands is used in order to adjust any of the columns in ascending or descending order
+order( originaldata $ Meansofothercolumn)
+# The order of column Meansofothercolumn is arranged in descending order with the highest values first
+originaldata[order( - originaldata$Meansofothercolumn ) , ]
+originaldata <- originaldata[order( - originaldata$Meansofothercolumn ) , ]
+row.names(originaldata[1:10,])
