@@ -80,7 +80,13 @@ sd(SOUTHWEST$Circumf_2004_cm)
 sd(SOUTHWEST$Circumf_2019_cm)
 
 #ANSWER 8
+# Calcuating the mean for past 10  years i.e. 2009 and 2019
 mean(NORTHEAST$Circumf_2009_cm)
 mean(NORTHEAST$Circumf_2019_cm)
 mean(SOUTHWEST$Circumf_2009_cm)
 mean(SOUTHWEST$Circumf_2019_cm)
+# Obtaining the difference of means by subtracting means of year 2009 from year 2019 at both sites
+meandiffNORTHEAST  <- mean(NORTHEAST$Circumf_2019_cm) - mean(NORTHEAST$Circumf_2009_cm)
+meandiffNORTHEAST
+meandiffSOUTHWEST  <- mean(SOUTHWEST$Circumf_2019_cm) - mean(SOUTHWEST$Circumf_2009_cm)
+meandiffSOUTHWEST
