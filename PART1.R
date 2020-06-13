@@ -61,6 +61,10 @@ colnames(originaldatapart2)
 NORTHEAST <- subset(originaldatapart2, Site== 'northeast')
 SOUTHWEST <- subset(originaldatapart2, Site== 'southwest')
 # Calculating the mean of both the sites using command mean, for years 2004 and 2019
+mean(NORTHEAST$Circumf_2004_cm)
+mean(NORTHEAST$Circumf_2019_cm)
+mean(SOUTHWEST$Circumf_2004_cm)
+mean(SOUTHWEST$Circumf_2019_cm)
 # Calculating the standard deviation for both the sites using command sd, for years 2004 and years 2019
 sd(NORTHEAST$Circumf_2004_cm)
 sd(NORTHEAST$Circumf_2019_cm)
@@ -75,11 +79,6 @@ boxplot ( SOUTHWEST$Circumf_2004_cm, SOUTHWEST$Circumf_2019_cm, names = c("year2
           ylab = "CIRCUMFERENCE IN CMS", main= "CIRCUMFERENCE OF YEAR 2004 AND 2019 OF NORTHEAST SITE")
 
 #ANSWER 9
-# Calcuating the mean for past 10  years i.e. 2009 and 2019.
-mean(NORTHEAST$Circumf_2009_cm)
-mean(NORTHEAST$Circumf_2019_cm)
-mean(SOUTHWEST$Circumf_2009_cm)
-mean(SOUTHWEST$Circumf_2019_cm)
 
 # Obtaining the difference by subtracting circumference of year 2009 from year 2019 at site Northeast
 DiffNortheast <- NORTHEAST$Circumf_2019_cm - NORTHEAST$Circumf_2009_cm
