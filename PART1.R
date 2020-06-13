@@ -68,10 +68,12 @@ subset(originaldatapart2, Site== 'northeast')
 NORTHEAST <- subset(originaldatapart2, Site== 'northeast')
 subset(originaldatapart2, Site== 'southwest')
 SOUTHWEST <- subset(originaldatapart2, Site== 'southwest')
+# Calculating the mean of both the sites using command mean, for years 2004 and 2019
 mean(NORTHEAST$Circumf_2004_cm)
 mean(NORTHEAST$Circumf_2019_cm)
 mean(SOUTHWEST$Circumf_2004_cm)
 mean(SOUTHWEST$Circumf_2019_cm)
+Calcultaing the standard deviation for both the sites using command sd, for years 2004 and years 2019
 sd(NORTHEAST$Circumf_2004_cm)
 sd(NORTHEAST$Circumf_2019_cm)
 sd(SOUTHWEST$Circumf_2004_cm)
