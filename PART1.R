@@ -170,3 +170,33 @@ CHANGE <- Biostrings::pairwiseAlignment(SEQUENCE,mutated_sequence)
 pid(CHANGE)
 # Counts number of mismatches 
 nmismatch(CHANGE)
+
+# ANSWER 5
+# First of all, we make a new variable which would be the mutated variable of my SEQUENCE. i.e. 44
+SEQUENCE_mut<- mutator(SEQUENCE,100)
+# Now, we compare mutated sequence with the gene of origin data of e.coli
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+# We change the n and increase it, till there is no match of our mutated gene with the genes of origin.
+#Hence i have changed multiple values and run the code below
+SEQUENCE_mut<- mutator(SEQUENCE,200)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+SEQUENCE_mut<- mutator(SEQUENCE,300)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+SEQUENCE_mut<- mutator(SEQUENCE,350)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+SEQUENCE_mut<- mutator(SEQUENCE,400)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+SEQUENCE_mut<- mutator(SEQUENCE,405)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+SEQUENCE_mut<- mutator(SEQUENCE,401)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+SEQUENCE_mut<- mutator(SEQUENCE,425)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
