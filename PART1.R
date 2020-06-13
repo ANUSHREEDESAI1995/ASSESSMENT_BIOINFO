@@ -3,10 +3,11 @@
 # Downloaded the data of gene expression file - ANSWER 1
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/gene_expression.tsv",
               destfile = "assessment3.tsv")
-# Reading the table and making sure that gene accession names are the row names
+# Reading the table into R
 originaldata <- read.table("assessment3.tsv")
 
 #ANSWER 1 
+# Making sure that gene accession names are the row names
 originaldata <- read.table("assessment3.tsv", header= TRUE, stringsAsFactors= FALSE, row.names=1) 
 # Data imported properly and printing first six rows and structure as well.
 head(originaldata)
@@ -92,6 +93,7 @@ mean(NORTHEAST$Circumf_2009_cm)
 mean(NORTHEAST$Circumf_2019_cm)
 mean(SOUTHWEST$Circumf_2009_cm)
 mean(SOUTHWEST$Circumf_2019_cm)
+
 # Obtaining the difference by subtracting circumference of year 2009 from year 2019 at site Northeast
 DiffNortheast <- NORTHEAST$Circumf_2019_cm - NORTHEAST$Circumf_2009_cm
 DiffNortheast
@@ -101,6 +103,7 @@ cbind(NORTHEAST,DiffNortheast)
 NORTHEAST <-cbind(NORTHEAST,DiffNortheast)
 # Checking first six rows
 head(NORTHEAST)
+
 # Obtaining the difference by subtracting circumference of year 2009 from year 2019 at site SouthWest
 DiffSouthwest <- SOUTHWEST$Circumf_2019_cm - SOUTHWEST$Circumf_2009_cm
 DiffSouthwest
@@ -110,11 +113,18 @@ cbind(SOUTHWEST,DiffSouthwest)
 SOUTHWEST <- cbind(SOUTHWEST,DiffSouthwest)
 # Checking first six rows
 head(SOUTHWEST)
+
 # Mean of the difference of circumference of year 2009 and 2019 at site NorthEast
 meanNorth <- mean(DiffNortheast)
 # Stored as new variable meanNorth
 meanNorth
+
 # Mean of the difference of circumference of year 2009 and 2019 at site SouthWest
 meanSouth <- mean(DiffSouthwest)
 # Stored as new variable meanSouth
 meanSouth
+
+# ANSWER 10
+# In order to find the P- value I used the new columns made DiffNorthEast and DiffSouthWest
+t.test(DiffSouthwest,DiffNortheast)
+wilcox.test(DiffNortheast,DiffSouthwest)
