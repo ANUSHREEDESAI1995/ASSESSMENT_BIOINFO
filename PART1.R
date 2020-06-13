@@ -79,6 +79,13 @@ sd(NORTHEAST$Circumf_2019_cm)
 sd(SOUTHWEST$Circumf_2004_cm)
 sd(SOUTHWEST$Circumf_2019_cm)
 
+#ANSWER 8
+# Making a box plot of tree circumference at both sites
+boxplot ( NORTHEAST$Circumf_2004_cm, NORTHEAST$Circumf_2019_cm, names = c("year2004", "year2019"),
+          ylab = "CIRCUMFERENCE IN CMS", main= "CIRCUMFERENCE OF YEAR 2004 AND 2019 OF NORTHEAST SITE")
+boxplot ( SOUTHWEST$Circumf_2004_cm, SOUTHWEST$Circumf_2019_cm, names = c("year2004", "year2019"),
+          ylab = "CIRCUMFERENCE IN CMS", main= "CIRCUMFERENCE OF YEAR 2004 AND 2019 OF NORTHEAST SITE")
+
 #ANSWER 9
 # Calcuating the mean for past 10  years i.e. 2009 and 2019
 mean(NORTHEAST$Circumf_2009_cm)
