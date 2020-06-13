@@ -208,3 +208,8 @@ res
 SEQUENCE_mut<- mutator(SEQUENCE,425)
 res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
 res
+
+# ANSWER 6
+no_of_sites_randomised <- list(50,100,200,300,400,401,405,425,450)
+proportion_of_successful_BLASTs <- list(0.97, 0.95, 0.91, 0.85, 0.84, 0.82, 0.81, 0, 0)
+plot(no_of_sites_randomised, proportion_of_successful_BLASTs,type = "o", main="Effects of increasing n on BLAST Performance")
