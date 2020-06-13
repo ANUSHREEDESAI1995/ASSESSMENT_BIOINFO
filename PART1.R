@@ -92,18 +92,29 @@ mean(NORTHEAST$Circumf_2009_cm)
 mean(NORTHEAST$Circumf_2019_cm)
 mean(SOUTHWEST$Circumf_2009_cm)
 mean(SOUTHWEST$Circumf_2019_cm)
-# Obtaining the difference of means by subtracting means of year 2009 from year 2019 at both sites
-# saving results in new variables named meandiffNORTHEAST and meandiffSOUTHWEST
+# Obtaining the difference by subtracting circumference of year 2009 from year 2019 at site Northeast
 DiffNortheast <- NORTHEAST$Circumf_2019_cm - NORTHEAST$Circumf_2009_cm
 DiffNortheast
+# Adding new column to main NORTHEAST data
 cbind(NORTHEAST,DiffNortheast)
+# Making permanent change by adding a new column DiffNorthEast that is the difference in circumference of year 2009 and 2019
 NORTHEAST <-cbind(NORTHEAST,DiffNortheast)
+# Checking first six rows
 head(NORTHEAST)
+# Obtaining the difference by subtracting circumference of year 2009 from year 2019 at site SouthWest
 DiffSouthwest <- SOUTHWEST$Circumf_2019_cm - SOUTHWEST$Circumf_2009_cm
 DiffSouthwest
+# Adding new column to main SouthWest data
 cbind(SOUTHWEST,DiffSouthwest)
+# Making permanent change by adding a new column DiffSouthWest that is the difference in circumference of year 2009 and 2019
 SOUTHWEST <- cbind(SOUTHWEST,DiffSouthwest)
-SOUTHWEST
+# Checking first six rows
 head(SOUTHWEST)
+# Mean of the difference of circumference of year 2009 and 2019 at site NorthEast
 meanNorth <- mean(DiffNortheast)
+# Stored as new variable meanNorth
+meanNorth
+# Mean of the difference of circumference of year 2009 and 2019 at site SouthWest
 meanSouth <- mean(DiffSouthwest)
+# Stored as new variable meanSouth
+meanSouth
