@@ -51,3 +51,15 @@ hist(originaldata$Meansofothercolumn, xlim= c(20000,250000), ylim= c(0,60), xlab
      main = "MEAN V/S FREQUENCY")
 
 #START OF PART1/ QUESTIONS 6 TO 10
+#ANSWER 6
+# Downloading the file and reading it into R
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/growth_data.csv", 
+              destfile="assessment3part2.csv")
+originaldatapart2 <- read.csv("assessment3part2.csv")
+# Observing the structure of the data and using command head to print the data of first 6 rows
+head(originaldatapart2)
+str(originaldatapart2)
+# Command colnames will give us the result to check the column names.
+colnames(originaldatapart2)
+
+#ANSWER 7 
