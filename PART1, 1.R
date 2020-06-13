@@ -62,6 +62,7 @@ str(originaldatapart2)
 colnames(originaldatapart2)
 
 #ANSWER 7 
+# by the command subset i would separate the data for both the sites: northeast and southwest
 subset(originaldatapart2, Site== 'northeast')
 NORTHEAST <- subset(originaldatapart2, Site== 'northeast')
 subset(originaldatapart2, Site== 'southwest')
