@@ -78,3 +78,9 @@ sd(NORTHEAST$Circumf_2004_cm)
 sd(NORTHEAST$Circumf_2019_cm)
 sd(SOUTHWEST$Circumf_2004_cm)
 sd(SOUTHWEST$Circumf_2019_cm)
+
+#ANSWER 8
+mean(NORTHEAST$Circumf_2009_cm)
+mean(NORTHEAST$Circumf_2019_cm)
+mean(SOUTHWEST$Circumf_2009_cm)
+mean(SOUTHWEST$Circumf_2019_cm)
