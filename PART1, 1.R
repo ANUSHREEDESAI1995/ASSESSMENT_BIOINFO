@@ -1,3 +1,6 @@
+#Start of assignment- PART 1/ QUESTIONS 1 TO 5
+
+
 # Downloaded the data of gene expression file - ANSWER 1
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/gene_expression.tsv",
               destfile = "assessment3.tsv")
@@ -46,3 +49,5 @@ hist(originaldata$Meansofothercolumn)
 # and frequency till 60 we could get a good histogram
 hist(originaldata$Meansofothercolumn, xlim= c(20000,250000), ylim= c(0,60), xlab="Mean of the genes", 
      main = "MEAN V/S FREQUENCY")
+
+#START OF PART1/ QUESTIONS 6 TO 10
