@@ -160,12 +160,14 @@ head(res)
 hits<- res[1:3, c(3, 11, 12)]
 hits
 
-SEQUENCEMUTATE <- mutator(myseq=SEQUENCE,100)
-str(SEQUENCEMUTATE)
-SEQUENCE
-SEQUENCEMUTATE
+# ANSWER 4
+mutated_sequence <- mutator(myseq=SEQUENCE,100)
+str(mutated_sequence)
 SEQUENCE <- DNAString(c2s(SEQUENCE))
-SEQUENCEMUTATE <- DNAString(c2s(SEQUENCEMUTATE))
-CHANGE <- Biostrings::pairwiseAlignment(SEQUENCE,SEQUENCEMUTATE)
+mutated_sequence <- DNAString(c2s(mutated_sequence))
+# Use of pairwise alignment function arranges the sequences next to each other
+# Storing results in a new variable CHANGE
+CHANGE <- Biostrings::pairwiseAlignment(SEQUENCE,mutated_sequence)
 pid(CHANGE)
+# Counts number of mismatches 
 nmismatch(CHANGE)
