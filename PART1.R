@@ -94,7 +94,16 @@ mean(SOUTHWEST$Circumf_2009_cm)
 mean(SOUTHWEST$Circumf_2019_cm)
 # Obtaining the difference of means by subtracting means of year 2009 from year 2019 at both sites
 # saving results in new variables named meandiffNORTHEAST and meandiffSOUTHWEST
-meandiffNORTHEAST  <- mean(NORTHEAST$Circumf_2019_cm) - mean(NORTHEAST$Circumf_2009_cm)
-meandiffNORTHEAST
-meandiffSOUTHWEST  <- mean(SOUTHWEST$Circumf_2019_cm) - mean(SOUTHWEST$Circumf_2009_cm)
-meandiffSOUTHWEST
+DiffNortheast <- NORTHEAST$Circumf_2019_cm - NORTHEAST$Circumf_2009_cm
+DiffNortheast
+cbind(NORTHEAST,DiffNortheast)
+NORTHEAST <-cbind(NORTHEAST,DiffNortheast)
+head(NORTHEAST)
+DiffSouthwest <- SOUTHWEST$Circumf_2019_cm - SOUTHWEST$Circumf_2009_cm
+DiffSouthwest
+cbind(SOUTHWEST,DiffSouthwest)
+SOUTHWEST <- cbind(SOUTHWEST,DiffSouthwest)
+SOUTHWEST
+head(SOUTHWEST)
+meanNorth <- mean(DiffNortheast)
+meanSouth <- mean(DiffSouthwest)
