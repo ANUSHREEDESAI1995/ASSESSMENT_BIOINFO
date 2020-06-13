@@ -151,15 +151,14 @@ seqinr::getLength(SEQUENCE)
 # Using command GC()
 seqinr::GC(SEQUENCE)
 
-
+# ANSWER 3
+# myblastn_tab() command is used. It tries to find closest match to my SEQUENCE
 res <- myblastn_tab(myseq = SEQUENCE, db = "Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
-str(res)
 res
 head(res)
-hits <- (res$pident[1:3] + res$bitscore[1:3]) ##change needed 
-res[1:3, c(3, 11, 12)]
 hits<- res[1:3, c(3, 11, 12)]
 hits
+
 SEQUENCEMUTATE <- mutator(myseq=SEQUENCE,100)
 str(SEQUENCEMUTATE)
 SEQUENCE
