@@ -1,0 +1,360 @@
+---
+title: "SLE712 Assignment 3 Report"
+author: "Desai, Anushree H."
+date: "6/11/2020"
+output: html_document
+fontsize: 12pt
+---
+
+# LINK TO GITHUB REPOSITORY: "https://github.com/ANUSHREEDESAI1995"
+
+
+# Part 1
+
+## Answer 1.
+
+* The `download.file()` function downloads the file specified by the argument url from the internet. To read this tsv file into R Studio, I have used the `read.table()` function. Here, the `header = TRUE` option specifies that the first row contains the variables names, and `row.names = 1` option converts the gene accession names to row names. 
+* Now to obtain just the first six rows from the table, the `head()` function is used. `str()` *(structure)* displays the structure of the data set.
+
+```{r,ANSWER1,echo=TRUE}
+#Start of assignment- PART 1/ QUESTIONS 1 TO 5
+
+# Downloaded the data of gene expression file - ANSWER 1
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/gene_expression.tsv",
+              destfile = "assessment3.tsv")
+# Reading the table into R
+originaldata <- read.table("assessment3.tsv")
+
+#ANSWER 1 
+# Making sure that gene accession names are the row names
+originaldata <- read.table("assessment3.tsv", header= TRUE, stringsAsFactors= FALSE, row.names=1) 
+# Data imported properly and printing first six rows and structure as well.
+head(originaldata)
+str(originaldata)
+
+```
+
+## Answer 2.
+
+* In this question, we need to make a new column that stores the mean of other columns. The `rowMeans()` function finds the mean of all rows in the table. The result of `rowMeans()` is stored in a new variable named **Meansofothercolumn**. I then bind this newly made column to the original table using the `cbind()` command (this is a permanent addition).
+* At last, the `head()` command is used to show a table associated with the first six genes from the entire dataset.
+
+```{r,ANSWER2,echo=TRUE}
+#ANSWER 2
+
+# A new column is made with the name of Meansofothercolumn to store these means.
+Meansofothercolumn <- rowMeans(originaldata)
+# Adding the new column of means.
+# Permanent change to data. 
+originaldata <- cbind(originaldata, Meansofothercolumn)
+# Observe the first six genes to check if new column is added
+head(originaldata)
+
+```
+
+## Answer 3.
+
+* In this question, we are asked to list 10 genes that have the highest mean values. This problem can be solved by first sorting the genes by the the **Meansofothercolumn** column. This can be done by using the `order()` function. `originaldata[order(-originaldata$Meansofothercolumn),]` sorts the rows of **originaldata** in descending order by values of column **Meansofothercolumn**. This keeps the other columns at their original places.
+* Once the data is sorted as per the requirement, I used the `row.names()` function to list out the first 10 gene names.
+
+```{r,ANSWER3,echo=TRUE}
+#ANSWER 3
+
+# Permanent change of the descending order to Meansofothercolumn column has been made after arranging in descending step using the command order
+originaldata <- originaldata[order( - originaldata$Meansofothercolumn ) , ]
+# Extracting just the first ten rows with highest means
+row.names(originaldata[1:10,])
+
+```
+## Answer 4.
+
+* In this question, we are asked to find the total number of genes whose mean value of column entries is less than 10.
+* This can be acheived with 2 steps. First the `subset()` function can be used to extract only the genes that have mean values less than 10.
+* Once this is done, the `nrow()` function is used to calculate the rows in the extracted subset which is effectively the number of genes whose mean values is < 10.
+
+```{r,ANSWER4,echo=TRUE}
+#ANSWER 4
+# Using the subset command to only extract the genes with means less than 10
+# And simultaneously added nrow to count how many genes have means less than 10
+nrow(subset(originaldata, Meansofothercolumn < 10))
+
+```
+
+## Answer 5.
+
+* In this question, we are asked to make a histogram plot of the mean values. The `hist()` function is used to print the required plot.
+* As can be seen from plot 1, most of the genes have a mean value lesser than 25000. Hence we dont see a spikes for those genes that have means > 25000 or so. To see this clearly, we can limit the X and Y axis values using the `xlim` and `ylim` options and zoom into the plot. This can be seen in plot 2.
+
+```{r,ANSWER5,echo=TRUE}
+#ANSWER 5
+# In order to plot a histogram command hist is used. 
+# i tried plotting it just normally first
+hist(originaldata$Meansofothercolumn, xlab="Mean of the genes", 
+     main = "MEAN V/S FREQUENCY")
+# But because the genes with mean say less than 25,000 are maxiumum the entire hishtogram was just plotted round that values.
+# Hence by limiting the genes with means in x axis from 20,000 to 25,000 
+# and frequency till 60 we could get a good histogram
+hist(originaldata$Meansofothercolumn, xlim= c(20000,250000), ylim= c(0,60), xlab="Mean of the genes", 
+     main = "MEAN V/S FREQUENCY")
+
+```
+
+## Answer 6.
+
+* In this question, we are asked to import the new file into an R object. First we download the file using the `download.file()` function used in the first question. The data is then into an R object using the `read.csv()` function similar to the `read.table()` function in the first question. Finally to show the column names, we use the `colnames()` function.
+
+```{r,ANSWER6,echo=TRUE}
+#START OF PART1/ QUESTIONS 6 TO 10
+#ANSWER 6
+# Downloading the file and reading it into R
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/growth_data.csv", 
+              destfile="assessment3part2.csv")
+originaldatapart2 <- read.csv("assessment3part2.csv")
+# Command colnames will give us the result to check the column names.
+colnames(originaldatapart2)
+```
+
+## Answer 7.
+
+* In this question, we are asked to calculate the mean and the standard deviation of tree circumference at the start *(year 2004)* and end *(year 2009)* of the study at both sites.
+* I solve this by making two datasets from the original data named **NORTHEAST** and **SOUTHWEST**. This is done using the `subset()` function used earlier.
+* Once this is done, the mean and sd are calculated for the years 2004 and 2019 for both sites using the `mean()` and the `sd()` functions respectively.
+
+```{r,ANSWER7,echo=TRUE}
+
+#ANSWER 7 
+# by the command subset i would separate the data for both the sites: northeast and southwest
+# Making permanent changes to the sites
+NORTHEAST <- subset(originaldatapart2, Site== 'northeast')
+SOUTHWEST <- subset(originaldatapart2, Site== 'southwest')
+# Calculating the mean of both the sites using command mean, for years 2004 and 2019
+mean(NORTHEAST$Circumf_2004_cm)
+mean(NORTHEAST$Circumf_2019_cm)
+mean(SOUTHWEST$Circumf_2004_cm)
+mean(SOUTHWEST$Circumf_2019_cm)
+# Calculating the standard deviation for both the sites using command sd, for years 2004 and years 2019
+sd(NORTHEAST$Circumf_2004_cm)
+sd(NORTHEAST$Circumf_2019_cm)
+sd(SOUTHWEST$Circumf_2004_cm)
+sd(SOUTHWEST$Circumf_2019_cm)
+
+
+```
+
+
+## Answer 8.
+
+* In this question, we need to make a box plot of tree circumferences at the start *(year 2004)* and end *(year 2019)* at both sites.
+* This is done using the box plot command. I have made 2 different box plots corresponding to 2 datasets **NORTHEAST** and **SOUTHWEST** made earlier.
+
+```{r,ANSWER8,echo=TRUE}
+#ANSWER 8
+# Making a box plot of tree circumference at both sites
+boxplot ( NORTHEAST$Circumf_2004_cm, NORTHEAST$Circumf_2019_cm, names = c("year2004", "year2019"),
+          ylab = "CIRCUMFERENCE IN CMS", main= "CIRCUMFERENCE OF YEAR 2004 AND 2019 OF NORTHEAST SITE")
+boxplot ( SOUTHWEST$Circumf_2004_cm, SOUTHWEST$Circumf_2019_cm, names = c("year2004", "year2019"),
+          ylab = "CIRCUMFERENCE IN CMS", main= "CIRCUMFERENCE OF YEAR 2004 AND 2019 OF NORTHEAST SITE")
+
+
+```
+
+## Answer 9.
+
+* This question asks to find the mean growth over the past 10 years **(2009 to 2019)** at both sites. For each site, I make a new column (**DiffNorthEast** and **DiffSouthWest**) that store the circumference growth over the last 10 years. I then append these 2 new columns to their respective datasets **NORTHEAST** and **SOUTHWEST** using the `cbind()` function.
+* To finally calculate the required mean values, I use `mean()` function on the newly created columns to find the average growth at each site.
+
+```{r,ANSWER9,echo=TRUE}
+#ANSWER 9
+
+# Obtaining the difference by subtracting circumference of year 2009 from year 2019 at site Northeast
+DiffNortheast <- NORTHEAST$Circumf_2019_cm - NORTHEAST$Circumf_2009_cm
+# Making permanent change by adding a new column DiffNorthEast that is the difference in circumference of year 2009 and 2019
+NORTHEAST <-cbind(NORTHEAST,DiffNortheast)
+# Checking first six rows
+head(NORTHEAST)
+
+# Obtaining the difference by subtracting circumference of year 2009 from year 2019 at site SouthWest
+DiffSouthwest <- SOUTHWEST$Circumf_2019_cm - SOUTHWEST$Circumf_2009_cm
+# Making permanent change by adding a new column DiffSouthWest that is the difference in circumference of year 2009 and 2019
+SOUTHWEST <- cbind(SOUTHWEST,DiffSouthwest)
+# Checking first six rows
+head(SOUTHWEST)
+
+# Mean of the difference of circumference of year 2009 and 2019 at site NorthEast
+meanNorth <- mean(DiffNortheast)
+# Stored as new variable meanNorth
+meanNorth
+
+# Mean of the difference of circumference of year 2009 and 2019 at site SouthWest
+meanSouth <- mean(DiffSouthwest)
+# Stored as new variable meanSouth
+meanSouth
+
+```
+
+## Answer 10.
+
+* In this question we use the `t.test()` and `wilcox.test()` functions to calculate the p-values.
+* The p-values calculated state that the 10 year growth is different at both sites and is not associated.
+
+```{r,ANSWER10,echo=TRUE}
+# ANSWER 10
+# In order to find the P- value I used the new columns made DiffNorthEast and DiffSouthWest
+t.test(DiffSouthwest,DiffNortheast)
+wilcox.test(DiffNortheast,DiffSouthwest)
+
+```
+# Part 2
+
+## Answer 1
+
+* The required libraries to run some of the commands used here are loaded using the `library()` function.
+* In this question, the E. coli gene DNA sequences are downloaded using the `download.file()` function. The data is then extracted using the `gunzip()` function.
+* Then, the `makeblastdb()` function is used to create a blast database. This creates the required database. Also, the total number of sequences = 4140 is printed as part of the function output.
+
+```{r,ANSWER11,echo=TRUE}
+# PART 2 OF THE ASSIGNMENT STARTS HERE
+
+#ANSWER 1
+#Some of the basic libraries have been run to apply the functions and run the commands 
+library("seqinr")
+library("R.utils")
+library("rBLAST")
+library("ape")
+library("ORFik")
+library("Biostrings")
+
+# There are some premade functions by our supervisor that have been run as well
+source("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R")
+
+# The whole e.coli file has been run
+download.file("ftp://ftp.ensemblgenomes.org/pub/bacteria/release-42/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655/cds/Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa.gz",
+              destfile = "Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa.gz")
+
+#Shows the gunzip() function to decompress the file.
+R.utils:: gunzip("Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa.gz", overwrite="TRUE")
+
+# makeblastdb() function is used to make a blast database and calculate number of genes.
+makeblastdb("Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa",dbtype = "nucl","-parse_seqids")
+
+```
+
+## Answer 2
+
+* The sample fasta sequence is downloaded again using the `download.file()` function. The file contents are read in to a new variable called **sequence**. str(sequence) shows the struture of the newly read data.
+* A new variable **SEQUENCE** is created which stored my alloted sequence. str(SEQUENCE) shows the structure of my sequence.
+* Then using the `getLength()` and `GC()` functions from the `seqinr` library, the *length* and the proportion of *gc* bases is respectively determined.
+
+```{r,ANSWER12,echo=TRUE}
+#ANSWER 2
+
+# Downloading new file and naming it as sample.fa
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa", destfile = "sample.fa" )
+makeblastdb("sample.fa",dbtype = "nucl","-parse_seqids")
+# A new sequence variable is made that stores sample.fa data
+sequence <- read.fasta("sample.fa")
+# Shows structure of my sequence
+str(sequence)
+# My number is 44 so extractiing 44 number sequence and storing it in new variable SEQUENCE
+SEQUENCE <- sequence[[44]]
+str(SEQUENCE)
+# Using command getlength()
+seqinr::getLength(SEQUENCE)
+# Using command GC()
+seqinr::GC(SEQUENCE)
+
+```
+## Answer 3
+
+* In this question we are asked to identify the E. coli gene that matches with **SEQUENCE**. To find this the `myblastn_tab()` function is used. This function searches the E. coli gene DNA sequences and tries to find the closest match for `sequence`. The result of this operation is stored in a vew variable **res**.
+* **res** stores a lot of information about the search performed. To display the top 3 hits and just the *pident* and *bitscore*, a new variable **hits** is made that stores the required info. It can be seen that there is 1 hit which is an exact match.
+
+```{r,ANSWER13,exact=TRUE}
+res <- myblastn_tab(myseq = SEQUENCE, db = "Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+str(res)
+head(res)
+# The top hits are saved in a new variable
+hits<- res[1:3, c(3, 11, 12)]
+hits
+```
+
+## Answer 4
+
+* The `mutator()` function makes a fixed number of point mutations to the input sequence. Let the number of mutations to be performed be `n = 100`. The function returns the mutated sequence, which is stored in a new variable **mutated_sequence**.
+* To find the number of mismatches between the original and mutated sequences *(SEQUENCE and mutated_sequence respectively)*, the `nmismatch()` function is used. The input argument to this function is the pairwise aligned sequence returned by the `pairwiseAlignment()` function.
+
+```{r,ANSWER14,echo=TRUE}
+# ANSWER 4
+mutated_sequence <- mutator(myseq=SEQUENCE,100)
+str(mutated_sequence)
+SEQUENCE <- DNAString(c2s(SEQUENCE))
+mutated_sequence <- DNAString(c2s(mutated_sequence))
+# Use of pairwise alignment function arranges the sequences next to each other
+# Storing results in a new variable CHANGE
+CHANGE <- Biostrings::pairwiseAlignment(SEQUENCE,mutated_sequence)
+pid(CHANGE)
+# Counts number of mismatches 
+nmismatch(CHANGE)
+
+```
+
+## Answer 5
+
+* Question 5 asks to find the number and proportion of the sites that need to be modified, so the BLAST search cannot match the gene of origin.
+* The `mutator()` function will be used to mutate **SEQUENCE**. The new obtained mutated sequence of our SEQUENCE would be named as **SEQUENCE_mut**. 
+* We start with a value of `n = 100` and increase the mutations(n) till the mutated sequence no longer matches the gene of origin . The mutated sequence is then provided to the `myblastn_tab()` function to make a blast search to match the gene of origin. As *n* is increased, the mutations increase and `myblastn_tab()'s` performance reduces until it can no longer identify the gene of origin.
+* This threshold value seems to be about 405. When the number of mutations increase, the blast search results shows decrease in pident values and bitscore values
+
+```{r,ANSWER15,echo=TRUE}
+
+# ANSWER 5
+# Running original sequence again since it was changed in the previous question
+SEQUENCE<- sequence[[44]]
+# First of all, we make a new variable which would be the mutated variable of my SEQUENCE. i.e. 44
+SEQUENCE_mut<- mutator(SEQUENCE,100)
+# Now, we compare mutated sequence with the gene of origin data of e.coli
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+# We change the n and increase it, till there is no match of our mutated gene with the genes of origin.
+#Hence i have changed multiple values and run the code below
+SEQUENCE_mut<- mutator(SEQUENCE,50)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+SEQUENCE_mut<- mutator(SEQUENCE,100)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+SEQUENCE_mut<- mutator(SEQUENCE,200)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+SEQUENCE_mut<- mutator(SEQUENCE,300)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+SEQUENCE_mut<- mutator(SEQUENCE,350)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+SEQUENCE_mut<- mutator(SEQUENCE,400)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+SEQUENCE_mut<- mutator(SEQUENCE,401)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+SEQUENCE_mut<- mutator(SEQUENCE,405)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+SEQUENCE_mut<- mutator(SEQUENCE,425)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+
+```
+
+
+## Answer 6
+
+* This question asks to provide a chart showing the relation between increased mutations vs. reduced performance of the BLAST search to match the gene of origin.
+* This is the same strategy followed in question 5 to find the threshold value at/after which BLAST fails to match the gene of origin.
+
+```{r,ANSWER16,echo=TRUE}
+no_of_sites_randomised <- list(50,100,200,300,400,401,405,425,450)
+proportion_of_successful_BLASTs <- list(0.97, 0.95, 0.91, 0.85, 0.84, 0.82, 0.81, 0, 0)
+plot(no_of_sites_randomised, proportion_of_successful_BLASTs,type = "o", main="Effects of increasing n on BLAST Performance")
+```
