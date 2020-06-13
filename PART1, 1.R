@@ -1,6 +1,5 @@
 #Start of assignment- PART 1/ QUESTIONS 1 TO 5
 
-
 # Downloaded the data of gene expression file - ANSWER 1
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/gene_expression.tsv",
               destfile = "assessment3.tsv")
@@ -63,3 +62,7 @@ str(originaldatapart2)
 colnames(originaldatapart2)
 
 #ANSWER 7 
+subset(originaldatapart2, Site== 'northeast')
+NORTHEAST <- subset(originaldatapart2, Site== 'Notheast')
+subset(originaldatapart2, Site== 'southwest')
+SOUTHWEST <- subset(originaldatapart2, Site== 'southwest')
