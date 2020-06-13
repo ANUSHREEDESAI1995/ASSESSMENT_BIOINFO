@@ -87,7 +87,7 @@ boxplot ( SOUTHWEST$Circumf_2004_cm, SOUTHWEST$Circumf_2019_cm, names = c("year2
           ylab = "CIRCUMFERENCE IN CMS", main= "CIRCUMFERENCE OF YEAR 2004 AND 2019 OF NORTHEAST SITE")
 
 #ANSWER 9
-# Calcuating the mean for past 10  years i.e. 2009 and 2019
+# Calcuating the mean for past 10  years i.e. 2009 and 2019.
 mean(NORTHEAST$Circumf_2009_cm)
 mean(NORTHEAST$Circumf_2019_cm)
 mean(SOUTHWEST$Circumf_2009_cm)
