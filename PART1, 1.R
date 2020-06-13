@@ -63,6 +63,6 @@ colnames(originaldatapart2)
 
 #ANSWER 7 
 subset(originaldatapart2, Site== 'northeast')
-NORTHEAST <- subset(originaldatapart2, Site== 'Notheast')
+NORTHEAST <- subset(originaldatapart2, Site== 'northeast')
 subset(originaldatapart2, Site== 'southwest')
 SOUTHWEST <- subset(originaldatapart2, Site== 'southwest')
