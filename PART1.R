@@ -64,6 +64,15 @@ colnames(originaldatapart2)
 #ANSWER 7 
 # by the command subset i would separate the data for both the sites: northeast and southwest
 subset(originaldatapart2, Site== 'northeast')
+# Making permanent changes to the sites
 NORTHEAST <- subset(originaldatapart2, Site== 'northeast')
 subset(originaldatapart2, Site== 'southwest')
 SOUTHWEST <- subset(originaldatapart2, Site== 'southwest')
+mean(NORTHEAST$Circumf_2010_cm)
+mean(NORTHEAST$Circumf_2019_cm)
+mean(SOUTHWEST$Circumf_2004_cm)
+mean(SOUTHWEST$Circumf_2019_cm)
+sd(NORTHEAST$Circumf_2004_cm)
+sd(NORTHEAST$Circumf_2019_cm)
+sd(SOUTHWEST$Circumf_2004_cm)
+sd(SOUTHWEST$Circumf_2019_cm)
