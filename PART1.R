@@ -181,6 +181,12 @@ res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655
 res
 # We change the n and increase it, till there is no match of our mutated gene with the genes of origin.
 #Hence i have changed multiple values and run the code below
+SEQUENCE_mut<- mutator(SEQUENCE,50)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
+SEQUENCE_mut<- mutator(SEQUENCE,100)
+res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+res
 SEQUENCE_mut<- mutator(SEQUENCE,200)
 res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
 res
@@ -193,10 +199,10 @@ res
 SEQUENCE_mut<- mutator(SEQUENCE,400)
 res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
 res
-SEQUENCE_mut<- mutator(SEQUENCE,405)
+SEQUENCE_mut<- mutator(SEQUENCE,401)
 res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
 res
-SEQUENCE_mut<- mutator(SEQUENCE,401)
+SEQUENCE_mut<- mutator(SEQUENCE,405)
 res<-myblastn_tab(myseq=SEQUENCE_mut,db="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
 res
 SEQUENCE_mut<- mutator(SEQUENCE,425)
