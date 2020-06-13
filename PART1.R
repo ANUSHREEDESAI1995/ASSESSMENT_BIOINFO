@@ -109,3 +109,63 @@ meanSouth
 # In order to find the P- value I used the new columns made DiffNorthEast and DiffSouthWest
 t.test(DiffSouthwest,DiffNortheast)
 wilcox.test(DiffNortheast,DiffSouthwest)
+
+# PART 2 OF THE ASSIGNMENT STARTS HERE
+
+#ANSWER 1
+#Some of the basic libraries have been run to apply the functions and run the commands 
+library("seqinr")
+library("R.utils")
+library("rBLAST")
+library("ape")
+library("ORFik")
+library("Biostrings")
+
+# There are some premade functions by our supervisor that have been run as well
+source("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R")
+
+# The whole e.coli file has been run
+download.file("ftp://ftp.ensemblgenomes.org/pub/bacteria/release-42/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655/cds/Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa.gz",
+              destfile = "Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa.gz")
+
+#Shows the gunzip() function to decompress the file.
+R.utils:: gunzip("Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa.gz", overwrite="TRUE")
+
+# makeblastdb() function is used to make a blast database and calculate number of genes.
+makeblastdb("Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa",dbtype = "nucl","-parse_seqids")
+
+#ANSWER 2
+
+# Downloading new file and naming it as sample.fa
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa", destfile = "sample.fa" )
+makeblastdb("sample.fa",dbtype = "nucl","-parse_seqids")
+# A new sequence variable is made that stores sample.fa data
+sequence <- read.fasta("sample.fa")
+# Shows structure of my sequence
+str(sequence)
+# My number is 44 so extractiing 44 number sequence and storing it in new variable SEQUENCE
+SEQUENCE <- sequence[[44]]
+str(SEQUENCE)
+# Using command getlength()
+seqinr::getLength(SEQUENCE)
+# Using command GC()
+seqinr::GC(SEQUENCE)
+
+
+res <- myblastn_tab(myseq = SEQUENCE, db = "Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa")
+str(res)
+res
+head(res)
+hits <- (res$pident[1:3] + res$bitscore[1:3]) ##change needed 
+res[1:3, c(3, 11, 12)]
+hits<- res[1:3, c(3, 11, 12)]
+hits
+SEQUENCEMUTATE <- mutator(myseq=SEQUENCE,100)
+str(SEQUENCEMUTATE)
+SEQUENCE
+SEQUENCEMUTATE
+SEQUENCE <- DNAString(c2s(SEQUENCE))
+SEQUENCEMUTATE <- DNAString(c2s(SEQUENCEMUTATE))
+CHANGE <- Biostrings::pairwiseAlignment(SEQUENCE,SEQUENCEMUTATE)
+pid(CHANGE)
+nmismatch(CHANGE)
