@@ -172,6 +172,8 @@ pid(CHANGE)
 nmismatch(CHANGE)
 
 # ANSWER 5
+# Running original sequence again since it was changed in the previous question
+SEQUENCE<- sequence[[44]]
 # First of all, we make a new variable which would be the mutated variable of my SEQUENCE. i.e. 44
 SEQUENCE_mut<- mutator(SEQUENCE,100)
 # Now, we compare mutated sequence with the gene of origin data of e.coli
